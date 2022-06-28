@@ -1,9 +1,7 @@
 import axios from 'axios';
-// import { useState, useEffect } from 'react';
-// import { IWeather } from '../interfaces/IWeather';
 
 export const weatherData = axios.create({
-  baseURL: 'http://mock-api-call/weather/get-weather',
+  baseURL: 'process.env.REACT_APP_API_URL',
 });
 
 export const newsData = axios.create({
