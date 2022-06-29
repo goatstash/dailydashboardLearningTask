@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { fetchWeatherData } from '../../__mocks__/WeatherMocks';
 import { render, waitFor } from '@testing-library/react';
-import Weather from '../Weather';
+import WeatherComponent from '../WeatherComponent';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -23,32 +22,24 @@ describe('Return Weather Component Data', () => {
   });
 
   test('should return description', async () => {
-    const { getByText, getByTestId } = render(<Weather />);
+    const { getByText } = render(<WeatherComponent />);
     await waitFor(() => {
-      fetchWeatherData();
       expect(
         getByText('Clear skys all day with a warm summber breaze ariving in the afternoon'),
       ).toBeInTheDocument();
-
-      expect(getByText(`Temp: 17 to 28`));
-      expect(getByTestId('sunny')).toBeTruthy();
     });
   });
   test('should return forcast', async () => {
-    const { getByText } = render(<Weather />);
+    const { getByText } = render(<WeatherComponent />);
     await waitFor(() => {
-      fetchWeatherData();
-
       expect(getByText('Sunny')).toBeInTheDocument();
     });
   });
 
   test('should return temp', async () => {
-    const { getByText } = render(<Weather />);
+    const { getByText } = render(<WeatherComponent />);
     await waitFor(() => {
-      fetchWeatherData();
-
-      expect(getByText(`Temp: 17 to 28`));
+      expect(getByText(`Temp: 17 to 28`)).toBeInTheDocument();
     });
   });
 });
@@ -67,11 +58,9 @@ describe('Return weather icons', () => {
         },
       },
     });
-    const { getByTestId } = render(<Weather />);
+    const { getByTestId } = render(<WeatherComponent />);
 
     await waitFor(() => {
-      fetchWeatherData();
-
       expect(getByTestId('sunny')).toBeTruthy();
     });
   });
@@ -88,11 +77,9 @@ describe('Return weather icons', () => {
         },
       },
     });
-    const { getByTestId } = render(<Weather />);
+    const { getByTestId } = render(<WeatherComponent />);
 
     await waitFor(() => {
-      fetchWeatherData();
-
       expect(getByTestId('snowing')).toBeTruthy();
     });
   });
@@ -109,11 +96,9 @@ describe('Return weather icons', () => {
         },
       },
     });
-    const { getByTestId } = render(<Weather />);
+    const { getByTestId } = render(<WeatherComponent />);
 
     await waitFor(() => {
-      fetchWeatherData();
-
       expect(getByTestId('overcast')).toBeTruthy();
     });
   });
