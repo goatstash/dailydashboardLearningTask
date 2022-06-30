@@ -4,3 +4,7 @@ export type Weather = {
   min: number;
   description: string;
 };
+
+export type FormInput = {
+  name: string;
+};
