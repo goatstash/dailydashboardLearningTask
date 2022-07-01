@@ -1,15 +1,12 @@
 import React from 'react';
-import { Container, Title } from '@mantine/core';
+import { Container, Title, TextInput } from '@mantine/core';
 import useStateWithLocalStorage from './UseStateWithLocalStorage';
 
 const UserForm = () => {
   const [inputValue, setInputValue] = useStateWithLocalStorage('', 'form');
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-  }
-
+  console.log(useStateWithLocalStorage);
   function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    console.log('Entered');
     setInputValue(() => ({
       [event.target.name]: event.target.value,
     }));
@@ -17,19 +14,15 @@ const UserForm = () => {
   return (
     <Container>
       <Title order={2}>Welcome {inputValue.name ? inputValue.name : ''}</Title>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
-          Name
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="enter your name"
-            onChange={handleChange}
-            value={inputValue.name}
-          />
-        </label>
-      </form>
+
+      <TextInput
+        type="text"
+        name="name"
+        id="name"
+        placeholder="enter your name"
+        onChange={handleChange}
+        value={inputValue.name}
+      />
     </Container>
   );
 };
