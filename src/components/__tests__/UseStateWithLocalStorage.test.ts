@@ -1,4 +1,4 @@
-import { render, screen, renderHook, act, fireEvent } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react';
 import { useStateWithLocalStorage } from '../UseStateWithLocalStorage';
 
 describe('Test local storage', () => {
