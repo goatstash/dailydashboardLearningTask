@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Title, TextInput } from '@mantine/core';
-import useStateWithLocalStorage from './UseStateWithLocalStorage';
+import { useStateWithLocalStorage } from './UseStateWithLocalStorage';
 
 const UserForm = () => {
   const [inputValue, setInputValue] = useStateWithLocalStorage('', 'form');
