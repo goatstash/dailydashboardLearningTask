@@ -13,3 +13,8 @@ export const useStateWithLocalStorage = (defaultValue: string, key: string) => {
 
   return [value, setValue];
 };
+<<<<<<< HEAD
+=======
+
+// export default useStateWithLocalStorage;
+>>>>>>> 14d849303f58e029899381750b65afdc37424cd4

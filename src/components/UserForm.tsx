@@ -4,9 +4,7 @@ import { useStateWithLocalStorage } from './UseStateWithLocalStorage';
 
 const UserForm = () => {
   const [inputValue, setInputValue] = useStateWithLocalStorage('', 'form');
-  console.log(useStateWithLocalStorage);
   function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    console.log('Entered');
     setInputValue(() => ({
       [event.target.name]: event.target.value,
     }));
