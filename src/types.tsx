@@ -8,3 +8,7 @@ export type Weather = {
 export type FormInput = {
   name: string;
 };
+
+export type Tasks = {
+  taskName: string;
+};
