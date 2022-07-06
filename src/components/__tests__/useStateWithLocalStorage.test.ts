@@ -6,7 +6,7 @@ describe('Test local storage', () => {
     const TEST_KEY: string | null = 'form';
     const TEST_VALUE = { name: 'matt' };
     renderHook(() => useStateWithLocalStorage(TEST_VALUE, TEST_KEY));
-    expect(JSON.parse(localStorage.getItem(TEST_KEY))).toEqual(TEST_VALUE);
+    expect(JSON.parse(localStorage.getItem(TEST_KEY) ?? 'error')).toEqual(TEST_VALUE);
   });
 
   test('should update localStorage when state changes', () => {
@@ -23,6 +23,6 @@ describe('Test local storage', () => {
       setValue(newValue);
     });
 
-    expect(JSON.parse(localStorage.getItem(TEST_KEY))).toEqual(newValue);
+    expect(JSON.parse(localStorage.getItem(TEST_KEY) ?? 'error')).toEqual(newValue);
   });
 });
