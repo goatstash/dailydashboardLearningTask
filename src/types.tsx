@@ -12,3 +12,6 @@ export type FormInput = {
 export type Tasks = {
   taskName: string;
 };
+export type News = {
+  title: string;
+};

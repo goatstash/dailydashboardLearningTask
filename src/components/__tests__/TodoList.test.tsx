@@ -2,31 +2,25 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import TodoList from '../TodoList';
 
 describe('TodoList', () => {
-  it('should render without errors', () => {
+  it('should add a task to the list and store it to localStorage', () => {
     render(<TodoList />);
 
-    expect(screen.getByTestId('container')).toBeInTheDocument();
-  });
+    fireEvent.change(screen.getByPlaceholderText('enter a task'), { target: { value: '123' } });
 
-  it('should add a task to the list and stores it to localStorage', () => {
-    render(<TodoList />);
+    fireEvent.click(screen.getByRole('button'));
 
-    fireEvent.change(screen.getByTestId('task-input'), { target: { value: '123' } });
-
-    fireEvent.click(screen.getByTestId('add-todo'));
-
-    expect(screen.getByTestId('todo-0')).toBeInTheDocument();
+    expect(screen.getByLabelText('list')).toBeInTheDocument();
 
     const localTasks = JSON.parse(localStorage.getItem('localTasks') || '[]');
-    expect(localTasks).toEqual([{ taskName: '123' }]);
+    expect(localTasks[0].taskName).toEqual('123');
   });
 
   it('should remove a task from the list and removes it from localStorage', () => {
     render(<TodoList />);
 
-    fireEvent.click(screen.getByTestId('delete-todo-0'));
+    fireEvent.click(screen.getByRole('button', { name: 'delete-button' }));
 
-    expect(screen.queryByTestId('todo-0')).not.toBeInTheDocument();
+    expect(screen.queryByLabelText('list')).not.toBeInTheDocument();
 
     const localTasks = JSON.parse(localStorage.getItem('localTasks') || '[]');
     expect(localTasks).toEqual([]);

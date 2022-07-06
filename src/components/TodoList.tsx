@@ -1,35 +1,38 @@
 import { Button, Container, List, TextInput } from '@mantine/core';
-import type { ChangeEvent, ReactElement } from 'react';
+import type { ChangeEvent } from 'react';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-const TodoList = (): ReactElement => {
+const TodoList = () => {
   const isMounted = useRef(false);
   const [task, setTask] = useState('');
-  const [todoList, setTodoList] = useState<Array<{ taskName: string }>>([]);
+  const [todoList, setTodoList] = useState<Array<{ taskName: string; id: string }>>([]);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTask(event.target.value);
   };
 
-  const handleDelete = (key: number): void => {
-    setTodoList((prevTodoList) => prevTodoList.filter((todo, index) => index !== key));
+  const handleDelete = (taskToDelete: unknown) => {
+    const deleted = todoList.filter((t) => t.id !== taskToDelete);
+    setTodoList(deleted);
+    localStorage.setItem('localTasks', JSON.stringify(deleted));
   };
 
-  const addTask = (): void => {
+  const addTask = () => {
     setTodoList((prevTodoList) =>
       prevTodoList.concat({
         taskName: task,
+        id: new Date().toString(),
       }),
     );
     setTask('');
   };
 
-  useLayoutEffect((): void => {
+  useLayoutEffect(() => {
     const localTasks = JSON.parse(localStorage.getItem('localTasks') || '[]');
     if (localTasks.length > 0) setTodoList(localTasks);
   }, []);
 
-  useEffect((): void => {
+  useEffect(() => {
     if (isMounted.current) {
       localStorage.setItem('localTasks', JSON.stringify(todoList));
     } else {
@@ -38,28 +41,28 @@ const TodoList = (): ReactElement => {
   }, [todoList]);
 
   return (
-    <Container data-testid="container">
+    <Container aria-label="container">
       <TextInput
-        data-testid="task-input"
         type="text"
         name="task"
         placeholder="enter a task"
         onChange={handleChange}
         value={task}
       />
-      <Button type="button" onClick={addTask} data-testid="add-todo">
+      <Button type="button" onClick={addTask} name="add-button">
         Add Task
       </Button>
-      {todoList.map((todo, key) => (
-        <Container key={key}>
+      {todoList.map((todo) => (
+        <Container key={todo.id}>
           <List
-            data-testid={`todo-${key}`}
+            aria-label="list"
             icon={
               <Button
-                data-testid={`delete-todo-${key}`}
+                data-testid={`delete-todo-${todo.id}`}
                 type="button"
+                aria-label="delete-button"
                 onClick={() => {
-                  handleDelete(key);
+                  handleDelete(todo.id);
                 }}
               >
                 X

@@ -2,7 +2,7 @@ import { Container, Title } from '@mantine/core';
 import UserForm from '../components/UserForm';
 import WeatherComponent from '../components/WeatherComponent';
 import TodoList from '../components/TodoList';
-
+import NewsComponent from '../components/NewsComponent';
 const Dashboard = () => {
   return (
     <Container>
@@ -10,6 +10,7 @@ const Dashboard = () => {
       <WeatherComponent />
       <UserForm />
       <TodoList />
+      <NewsComponent />
     </Container>
   );
 };
