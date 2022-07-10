@@ -18,7 +18,7 @@ describe('TodoList', () => {
   it('should remove a task from the list and removes it from localStorage', () => {
     render(<TodoList />);
 
-    fireEvent.click(screen.getByRole('button', { name: 'delete-button' }));
+    fireEvent.click(screen.getByLabelText('delete-button'));
 
     expect(screen.queryByLabelText('list')).not.toBeInTheDocument();
 

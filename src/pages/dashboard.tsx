@@ -1,16 +1,10 @@
-import { Container, Title } from '@mantine/core';
-import UserForm from '../components/UserForm';
-import WeatherComponent from '../components/WeatherComponent';
-import TodoList from '../components/TodoList';
-import NewsComponent from '../components/NewsComponent';
+import { Container } from '@mantine/core';
+import Content from '../components/Content';
+
 const Dashboard = () => {
   return (
     <Container>
-      <Title order={1}>This is the Dashboard page</Title>
-      <WeatherComponent />
-      <UserForm />
-      <TodoList />
-      <NewsComponent />
+      <Content />
     </Container>
   );
 };

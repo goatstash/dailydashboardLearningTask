@@ -12,6 +12,15 @@ export type FormInput = {
 export type Tasks = {
   taskName: string;
 };
-export type News = {
-  title: string;
-};
+export type News = [
+  {
+    title?: string;
+    image?: string;
+    description?: string;
+    datePosted?: string;
+  },
+];
+
+export interface WeatherProps {
+  user: Weather;
+}

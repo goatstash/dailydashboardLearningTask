@@ -32,14 +32,14 @@ describe('Return Weather Component Data', () => {
   test('should return forcast', async () => {
     const { getByText } = render(<WeatherComponent />);
     await waitFor(() => {
-      expect(getByText('Sunny')).toBeInTheDocument();
+      expect(getByText(/Sunny/i)).toBeInTheDocument();
     });
   });
 
   test('should return temp', async () => {
     const { getByText } = render(<WeatherComponent />);
     await waitFor(() => {
-      expect(getByText(`Temp: 17 to 28`)).toBeInTheDocument();
+      expect(getByText(/Sunny with a low of 17 and a high of 28/i)).toBeInTheDocument();
     });
   });
 });

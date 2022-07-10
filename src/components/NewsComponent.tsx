@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Container } from '@mantine/core';
-
+import { Container, Title, Text, Group } from '@mantine/core';
+import { News } from '../types';
 const NewsComponent = () => {
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState<News>();
 
   const fetchNewsData = async () => {
     const response = await axios.get('http://mock-api-call/news/get-news');
@@ -18,9 +18,14 @@ const NewsComponent = () => {
   }, []);
   return (
     <Container>
-      {/* {news.map((story, key) => (
-        <h3 key={key}>{story}</h3>
-      ))} */}
+      <Title order={2}>Daily News</Title>
+
+      {news?.map((story: any, key: number) => (
+        <Group key={key}>
+          <Title order={4}>{story.title}</Title>
+          <Text style={{ marginBottom: '15px' }}>{story.description}</Text>
+        </Group>
+      ))}
     </Container>
   );
 };
