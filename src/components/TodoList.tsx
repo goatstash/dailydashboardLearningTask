@@ -18,12 +18,13 @@ const TodoList = () => {
   };
 
   const addTask = () => {
-    setTodoList((prevTodoList) =>
-      prevTodoList.concat({
+    setTodoList([
+      ...todoList,
+      {
         taskName: task,
         id: new Date().toString(),
-      }),
-    );
+      },
+    ]);
     setTask('');
   };
 
