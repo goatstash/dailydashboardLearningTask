@@ -19,7 +19,7 @@ const WeatherComponent = () => {
   }, []);
 
   return (
-    <Container>
+    <Container style={{ width: '100%' }}>
       <WeatherContext.Provider value={weather?.forcast}>
         <UserForm />
       </WeatherContext.Provider>

@@ -81,7 +81,9 @@ const TodoList = () => {
           }
           key={todo.id}
         >
-          <List.Item style={{ listStyle: 'none' }}>{todo.taskName}</List.Item>
+          <List.Item style={{ listStyle: 'none' }} aria-label="list-item">
+            {todo.taskName}
+          </List.Item>
         </List>
       ))}
     </Container>

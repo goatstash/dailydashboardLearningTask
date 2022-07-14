@@ -1,14 +1,30 @@
 import React, { useState, useContext } from 'react';
-import { Container, Title, TextInput, Button, Group, Header } from '@mantine/core';
+import { Container, Title, TextInput, Button, Group, Header, createStyles } from '@mantine/core';
 import { useStateWithLocalStorage } from './UseStateWithLocalStorage';
 import { WeatherContext } from './WeatherComponent';
 import { MdWbSunny } from 'react-icons/md';
 import { BsFillCloudSnowFill } from 'react-icons/bs';
 import { IoIosPartlySunny } from 'react-icons/io';
 
+const useStyles = createStyles(() => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: 'gray',
+    justifyContent: 'space-between',
+    color: 'white',
+    alignItems: 'center',
+    padding: '10px',
+    fontSize: '25px',
+    fontWeight: 'bold',
+    boxShadow: '0 3px 6px 0 #555',
+  },
+}));
+
 const UserForm = () => {
   const [inputValue, setInputValue] = useStateWithLocalStorage('', 'form');
   const [show, setShow] = useState(true);
+  const { classes } = useStyles();
   const weatherIcon = useContext(WeatherContext);
   function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setInputValue(() => ({
@@ -18,20 +34,7 @@ const UserForm = () => {
 
   return (
     <Header height={56} mb={20}>
-      <Container
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          backgroundColor: 'gray',
-          justifyContent: 'space-between',
-          color: 'white',
-          alignItems: 'center',
-          padding: '10px',
-          fontSize: '25px',
-          fontWeight: 'bold',
-          boxShadow: '0 3px 6px 0 #555',
-        }}
-      >
+      <Container className={classes.container}>
         <Group>
           <Title order={2}>Welcome </Title>
           {show && (
