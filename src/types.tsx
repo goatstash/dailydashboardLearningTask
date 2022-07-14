@@ -8,3 +8,19 @@ export type Weather = {
 export type FormInput = {
   name: string;
 };
+
+export type Tasks = {
+  taskName: string;
+};
+export type News = [
+  {
+    title?: string;
+    image?: string;
+    description?: string;
+    datePosted?: string;
+  },
+];
+
+export interface WeatherProps {
+  user: Weather;
+}

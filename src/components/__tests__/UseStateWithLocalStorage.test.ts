@@ -3,7 +3,7 @@ import { useStateWithLocalStorage } from '../UseStateWithLocalStorage';
 
 describe('Test local storage', () => {
   test('should set local storage with default value', () => {
-    const TEST_KEY: string | null = 'form';
+    const TEST_KEY = 'form';
     const TEST_VALUE = { name: 'matt' };
     renderHook(() => useStateWithLocalStorage(TEST_VALUE, TEST_KEY));
     expect(JSON.parse(localStorage.getItem(TEST_KEY) ?? 'error')).toEqual(TEST_VALUE);
@@ -15,7 +15,6 @@ describe('Test local storage', () => {
 
     const { result } = renderHook(() => useStateWithLocalStorage(TEST_VALUE, TEST_KEY));
 
-    // Pulls from result.current to update state
     const [, setValue] = result.current;
     const newValue = { name: 'john' };
 
