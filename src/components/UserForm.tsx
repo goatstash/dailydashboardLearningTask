@@ -1,25 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { Container, Title, TextInput, Button, Group, Header, createStyles } from '@mantine/core';
+import { Container, Title, TextInput, Button, Group, Header } from '@mantine/core';
 import { useStateWithLocalStorage } from './UseStateWithLocalStorage';
 import { WeatherContext } from './WeatherComponent';
 import { MdWbSunny } from 'react-icons/md';
 import { BsFillCloudSnowFill } from 'react-icons/bs';
 import { IoIosPartlySunny } from 'react-icons/io';
-
-const useStyles = createStyles(() => ({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: 'gray',
-    justifyContent: 'space-between',
-    color: 'white',
-    alignItems: 'center',
-    padding: '10px',
-    fontSize: '25px',
-    fontWeight: 'bold',
-    boxShadow: '0 3px 6px 0 #555',
-  },
-}));
+import { useStyles } from '../styles/Styles';
 
 const UserForm = () => {
   const [inputValue, setInputValue] = useStateWithLocalStorage('', 'form');
@@ -34,7 +20,7 @@ const UserForm = () => {
 
   return (
     <Header height={56} mb={20}>
-      <Container className={classes.container}>
+      <Container className={classes.userFormContainer}>
         <Group>
           <Title order={2}>Welcome </Title>
           {show && (
@@ -51,7 +37,7 @@ const UserForm = () => {
           <Title order={2}>{inputValue.name ? inputValue.name : ''}</Title>
         </Group>
 
-        <Group style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Group>
           <Title order={2}>
             {weatherIcon === 'Sunny' ? (
               <MdWbSunny data-testid="sunny" />

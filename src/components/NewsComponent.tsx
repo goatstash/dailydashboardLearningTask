@@ -2,16 +2,17 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Container, Title, Text, Group } from '@mantine/core';
 import { News } from '../types';
+import { useStyles } from '../styles/Styles';
+
 const NewsComponent = () => {
   const [news, setNews] = useState<News>();
+  const { classes } = useStyles();
 
   const fetchNewsData = async () => {
     const response = await axios.get('http://mock-api-call/news/get-news');
 
     setNews(response.data.result.news);
   };
-
-  console.log(news);
 
   useEffect(() => {
     fetchNewsData();
@@ -23,7 +24,7 @@ const NewsComponent = () => {
       {news?.map((story: any, key: number) => (
         <Group key={key}>
           <Title order={4}>{story.title}</Title>
-          <Text style={{ marginBottom: '15px' }}>{story.description}</Text>
+          <Text className={classes.newsStoryText}>{story.description}</Text>
         </Group>
       ))}
     </Container>

@@ -2,11 +2,13 @@ import { Button, Container, List, TextInput, Title, Group } from '@mantine/core'
 import type { ChangeEvent } from 'react';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { BiTag } from 'react-icons/bi';
+import { useStyles } from '../styles/Styles';
+
 const TodoList = () => {
   const isMounted = useRef(false);
   const [task, setTask] = useState('');
   const [todoList, setTodoList] = useState<Array<{ taskName: string; id: string }>>([]);
-
+  const { classes } = useStyles();
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTask(event.target.value);
   };
@@ -42,8 +44,8 @@ const TodoList = () => {
   }, [todoList]);
 
   return (
-    <Container aria-label="container" style={{ display: 'flex', flexDirection: 'column' }}>
-      <Group style={{ justifyContent: 'space-between' }}>
+    <Container aria-label="container">
+      <Group className="">
         <Title order={2}>Daily ToDo List</Title>
 
         <Button type="button" onClick={addTask} name="add-button">
@@ -67,7 +69,7 @@ const TodoList = () => {
           center
           icon={
             <BiTag
-              style={{ transform: 'rotate(180deg)' }}
+              className={classes.todoListArrow}
               color="gray"
               radius="xl"
               size={24}
@@ -81,9 +83,7 @@ const TodoList = () => {
           }
           key={todo.id}
         >
-          <List.Item style={{ listStyle: 'none' }} aria-label="list-item">
-            {todo.taskName}
-          </List.Item>
+          <List.Item aria-label="list-item">{todo.taskName}</List.Item>
         </List>
       ))}
     </Container>

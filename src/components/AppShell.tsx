@@ -1,11 +1,9 @@
 import { AppShell, Navbar, Header } from '@mantine/core';
 import NewsComponent from './NewsComponent';
-// import NewsComponent from './NewsComponent';
 import TodoList from './TodoList';
-// import UserForm from './UserForm';
 import WeatherComponent from './WeatherComponent';
 
-function Demo() {
+function Shell() {
   return (
     <AppShell
       padding="md"
@@ -19,12 +17,10 @@ function Demo() {
           <WeatherComponent />
         </Header>
       }
-
-      // eslint-disable-next-line react/no-children-prop
     >
       <NewsComponent />
     </AppShell>
   );
 }
 
-export default Demo;
+export default Shell;
