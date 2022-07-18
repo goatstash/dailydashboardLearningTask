@@ -1,17 +1,18 @@
 import React, { useState, useContext } from 'react';
 import { Container, Title, TextInput, Button, Group, Header } from '@mantine/core';
 import { useStateWithLocalStorage } from './UseStateWithLocalStorage';
-import { WeatherContext } from './WeatherComponent';
 import { MdWbSunny } from 'react-icons/md';
 import { BsFillCloudSnowFill } from 'react-icons/bs';
 import { IoIosPartlySunny } from 'react-icons/io';
 import { useStyles } from '../styles/Styles';
+import { WeatherContext } from './context/WeatherContext';
 
 const UserForm = () => {
   const [inputValue, setInputValue] = useStateWithLocalStorage('', 'form');
   const [show, setShow] = useState(true);
   const { classes } = useStyles();
   const weatherIcon = useContext(WeatherContext);
+
   function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setInputValue(() => ({
       [event.target.name]: event.target.value,
@@ -39,9 +40,9 @@ const UserForm = () => {
 
         <Group>
           <Title order={2}>
-            {weatherIcon === 'Sunny' ? (
+            {weatherIcon?.weather?.forcast === 'Sunny' ? (
               <MdWbSunny data-testid="sunny" />
-            ) : weatherIcon === 'Snowing' ? (
+            ) : weatherIcon?.weather?.forcast === 'Snowing' ? (
               <BsFillCloudSnowFill data-testid="snowing" />
             ) : (
               <IoIosPartlySunny data-testid="overcast" />

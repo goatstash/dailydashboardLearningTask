@@ -13,4 +13,3 @@ export const useStateWithLocalStorage = (defaultValue: any, key: string) => {
 
   return [value, setValue];
 };
-

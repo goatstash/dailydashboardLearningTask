@@ -1,13 +1,17 @@
-// import { Container } from '@mantine/core';
-
-// import { Group } from '@mantine/core';
 import Shell from '../components/AppShell';
-// import NewsComponent from '../components/NewsComponent';
-// import TodoList from '../components/TodoList';
-// import WeatherComponent from '../components/WeatherComponent';
-
+import UserForm from '../components/UserForm';
+import { WeatherContextProvider } from '../components/context/WeatherContext';
+import WeatherComponent from '../components/WeatherComponent';
 const Dashboard = () => {
-  return <Shell />;
+  return (
+    <>
+      <WeatherContextProvider>
+        <UserForm />
+        <WeatherComponent />
+      </WeatherContextProvider>
+      <Shell />
+    </>
+  );
 };
 
 export default Dashboard;

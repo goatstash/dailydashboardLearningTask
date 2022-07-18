@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, screen } from '@testing-library/react';
 import WeatherComponent from '../WeatherComponent';
 
 jest.mock('axios');
@@ -22,6 +22,7 @@ describe('Return Weather Component Data', () => {
   });
 
   test('should return description', async () => {
+    screen.debug();
     const { getByText } = render(<WeatherComponent />);
     await waitFor(() => {
       expect(
@@ -32,7 +33,7 @@ describe('Return Weather Component Data', () => {
   test('should return forcast', async () => {
     const { getByText } = render(<WeatherComponent />);
     await waitFor(() => {
-      expect(getByText(/Sunny/i)).toBeInTheDocument();
+      expect(getByText(/sunny/i)).toBeInTheDocument();
     });
   });
 
