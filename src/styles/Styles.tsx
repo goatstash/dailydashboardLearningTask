@@ -1,6 +1,6 @@
 import { createStyles } from '@mantine/core';
 
-export const useStyles = createStyles(() => ({
+export const useStyles = createStyles((theme) => ({
   userFormContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -15,8 +15,15 @@ export const useStyles = createStyles(() => ({
   },
   todoListArrow: {
     transform: 'rotate(180deg)',
+    color: theme.colors.gray[5],
   },
   newsStoryText: {
     marginBottom: '15px',
+  },
+  todoListChild: {
+    justifyContent: 'space-between',
+  },
+  todoListContainer: {
+    display: 'flex',
   },
 }));

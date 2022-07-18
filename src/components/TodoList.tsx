@@ -45,7 +45,7 @@ const TodoList = () => {
 
   return (
     <Container aria-label="container">
-      <Group className="">
+      <Group className={classes.todoListChild}>
         <Title order={2}>Daily ToDo List</Title>
 
         <Button type="button" onClick={addTask} name="add-button">
@@ -70,7 +70,6 @@ const TodoList = () => {
           icon={
             <BiTag
               className={classes.todoListArrow}
-              color="gray"
               radius="xl"
               size={24}
               data-testid={`delete-todo-${todo.id}`}
