@@ -1,7 +1,7 @@
-import { AppShell, Header, Aside } from '@mantine/core';
+import { AppShell, Aside, Header } from '@mantine/core';
 import NewsComponent from './NewsComponent';
-
 import TodoList from './TodoList';
+import UserForm from './UserForm';
 import WeatherComponent from './WeatherComponent';
 
 function Shell() {
@@ -15,6 +15,7 @@ function Shell() {
       }
       header={
         <Header height={200} p="xs">
+          <UserForm />
           <WeatherComponent />
         </Header>
       }

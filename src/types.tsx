@@ -24,3 +24,12 @@ export type News = [
 export interface WeatherProps {
   user: Weather;
 }
+
+export type WeatherContextProviderProps = {
+  children: React.ReactNode;
+};
+
+export type WeatherContextType = {
+  weather?: Weather;
+  setWeather: React.Dispatch<React.SetStateAction<Weather | undefined>>;
+};
