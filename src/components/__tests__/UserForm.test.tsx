@@ -5,7 +5,7 @@ describe('Input form', () => {
   test('input should initially be empty', () => {
     render(<UserForm />);
 
-    const userInput = screen.getByRole('textbox');
+    const userInput = screen.getByRole<HTMLInputElement>('textbox');
     expect(userInput.value).toBe('');
   });
 
