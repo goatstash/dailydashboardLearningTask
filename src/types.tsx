@@ -30,6 +30,6 @@ export type WeatherContextProviderProps = {
 };
 
 export type WeatherContextType = {
-  weather: Weather | null | undefined;
-  setWeather: React.Dispatch<React.SetStateAction<Weather | null | undefined>>;
+  weather?: Weather;
+  setWeather: React.Dispatch<React.SetStateAction<Weather | undefined>>;
 };

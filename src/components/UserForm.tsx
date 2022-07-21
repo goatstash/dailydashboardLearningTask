@@ -11,7 +11,7 @@ const UserForm = () => {
   const [inputValue, setInputValue] = useStateWithLocalStorage('', 'form');
   const [show, setShow] = useState(true);
   const { classes } = useStyles();
-  const weatherIcon = useContext(WeatherContext);
+  const { weather } = useContext(WeatherContext);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setInputValue(() => ({
@@ -40,9 +40,9 @@ const UserForm = () => {
 
         <Group>
           <Title order={2}>
-            {weatherIcon?.weather?.forcast === 'Sunny' ? (
+            {weather?.forcast === 'Sunny' ? (
               <MdWbSunny data-testid="sunny" />
-            ) : weatherIcon?.weather?.forcast === 'Snowing' ? (
+            ) : weather?.forcast === 'Snowing' ? (
               <BsFillCloudSnowFill data-testid="snowing" />
             ) : (
               <IoIosPartlySunny data-testid="overcast" />

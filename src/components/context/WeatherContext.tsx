@@ -3,10 +3,12 @@ import { Weather } from '../../types';
 import axios from 'axios';
 import { WeatherContextType, WeatherContextProviderProps } from '../../types';
 
-export const WeatherContext = createContext<WeatherContextType | null>(null);
+export const WeatherContext = createContext<WeatherContextType>({
+  setWeather: () => {},
+});
 
 export const WeatherContextProvider = ({ children }: WeatherContextProviderProps) => {
-  const [weather, setWeather] = useState<Weather | null>();
+  const [weather, setWeather] = useState<Weather>();
   const fetchWeatherData = async () => {
     const response = await axios.get('http://mock-api-call/weather/get-weather');
 

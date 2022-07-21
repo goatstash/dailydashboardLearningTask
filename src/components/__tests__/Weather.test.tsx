@@ -22,7 +22,6 @@ describe('Return Weather Component Data', () => {
   });
 
   test('should return description', async () => {
-    screen.debug();
     const { getByText } = render(<WeatherComponent />);
     await waitFor(() => {
       expect(
